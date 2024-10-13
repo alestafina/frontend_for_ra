@@ -1,0 +1,25 @@
+.header {
+    height: 70px;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    justify-content: space-between;;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    align-items: center;
+    border-bottom: 1px solid #00488b;
+    z-index: 1000;
+}
+
+.icon {
+    margin-left: 20px;
+    height: 50px;
+    width: 50px;
+}
+
+.userInfo {
+    text-align: right;
+    margin-right: 20px;
+}

@@ -1,0 +1,85 @@
+ul {
+    list-style-type:  none;
+    padding-left: 0;
+}
+
+.nav {
+    width: 220px;
+    background-color: #3498db;
+    height: 100%; 
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; 
+    position: fixed;
+    left: 0;
+    top: 0;
+    padding-top: 54px;
+}
+
+.navBtn button{
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    border-top: 1px solid #00488b;
+    border-right:1px solid #00488b;
+}
+
+.submenu button {
+    background-color: #aaddff;
+    color: #1e5477;
+    border: none;
+    padding: 10px 20px;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    border-top: 1px solid #2980b9;
+    border-right:1px solid #00488b;
+}
+
+.navBtn button:hover {
+    background-color: #2980b9;
+    border-right: 0px;
+}
+
+.submenu button:hover {
+    background-color: #9bbbd1;
+}
+
+.active button{
+    background-color: #cae5ff;
+    color: #0367C3;
+    border-right: 0;
+}
+
+.active button:hover{
+    background-color: #cae5ff;
+    color: #0367C3;
+    border-right: 0;
+}
+
+.submenu {
+    display: flex;
+    flex-direction: column;
+}
+
+.exit button {
+    background-color: #005c99;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: left;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    border-bottom: 1px solid #2980b9;
+}
+
+.exit button:hover {
+    background-color: #004472;
+}

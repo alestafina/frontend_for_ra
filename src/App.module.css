@@ -1,0 +1,8 @@
+.content {
+    margin-left: 220px;
+    margin-top: 70px;
+    padding: 15px;
+    flex: 1;
+    min-height: 100%;
+}
+

@@ -1,0 +1,61 @@
+.NotesList {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.noteItem {
+    background-color: #d7e9f7;
+    border-bottom: 1px solid #0675c0;
+}
+
+.noteHeader {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    font-size: 16px;
+    align-items: center;
+    border-bottom: 1px solid #2980b9;
+}
+
+.arrowButton {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+}
+
+.arrowOpen {
+    height: 20px;
+    width: 20px;
+    transform: rotate(180deg);
+}
+
+.arrowClose {
+    height: 20px;
+    width: 20px;
+    transform: rotate(0deg);
+}
+
+.noteDetails {
+    background-color: #a3c9f1;
+    padding: 15px;
+    font-size: 14px;
+}
+
+.openContentButton {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, border 0.3s ease;
+}
+
+.openContentButton:hover {
+    background-color: #2980b9;
+}
