@@ -12,6 +12,7 @@ function NewNotePage({ onClose }) {
   const [selectedDepartment, setSelectedDepartment] = useState("");
   const [selectedEmployee, setSelectedEmployee] = useState("");
   const [noteTheme, setNoteTheme] = useState(""); // Тема
+  const [noteDescription, setNoteDescription] = useState(""); // Обоснование
   const [executionDate, setExecutionDate] = useState(null); // Дата исполнения
   const [showWarning, setShowWarning] = useState(false); // Состояние для предупреждения
   const [showNoteContent, setShowNoteContent] = useState(false); // Состояние для показа формы содержания
@@ -64,9 +65,8 @@ function NewNotePage({ onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault(); // Предотвращаем перезагрузку страницы
 
-    if (!noteTheme || !selectedDepartment || !selectedEmployee || !executionDate) {
+    if (!noteTheme || !noteDescription || !selectedDepartment || !selectedEmployee || !executionDate) {
       setShowWarning(true);
-      setTimeout(() => setShowWarning(false), 3000); // Скрываем предупреждение через 3 секунды
       return; // Не продолжаем, если поля пустые
     }
 
@@ -74,6 +74,7 @@ function NewNotePage({ onClose }) {
 
     const newNoteData = {
       theme: noteTheme,
+      description: noteDescription,
       department: selectedDepartment.value,
       employee: selectedEmployee.value,
       executionDate: formattedDate,
@@ -91,6 +92,7 @@ function NewNotePage({ onClose }) {
   // Обработчик для закрытия окна и очистки полей
   const handleClose = () => {
     setNoteTheme("");
+    setNoteDescription("");
     setSelectedDepartment("");
     setSelectedEmployee("");
     setExecutionDate(null);
@@ -127,6 +129,15 @@ function NewNotePage({ onClose }) {
                   value={noteTheme}
                   onChange={(e) => setNoteTheme(e.target.value)}
                   placeholder="Тема служебной записки"
+                  // className={classes.inputField}
+                />
+              </div>
+              <div className={classes.formGroup}>
+                <textarea
+                  type="text"
+                  value={noteDescription}
+                  onChange={(e) => setNoteDescription(e.target.value)}
+                  placeholder="Обоснование"
                   className={classes.inputField}
                 />
               </div>

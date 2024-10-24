@@ -14,9 +14,10 @@
 }
 
 .icon {
-    margin-left: 20px;
-    height: 50px;
-    width: 50px;
+    margin-left: 0px;
+    background-color: rgb(255, 255, 255);
+    height: 70px;
+    width: 219px;
 }
 
 .userInfo {
