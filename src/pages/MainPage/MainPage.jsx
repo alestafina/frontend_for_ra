@@ -4,8 +4,8 @@ import classes from "./MainPage.module.css";
 function MainPage() {
   return (
     <>
-      <h1>Это главная страница</h1>
-      <div className={classes.info}>сюда мы выведем инфу и графики</div>
+      <h1 className={classes.title}>Главная</h1>
+      <div className={classes.info}>Информация и графики здесь</div>
     </>
   );
 }

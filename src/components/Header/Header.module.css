@@ -1,6 +1,6 @@
 .header {
     height: 70px;
-    background-color: #3498db;
+    background-color: #0161a1;
     color: white;
     display: flex;
     justify-content: space-between;;
@@ -9,7 +9,7 @@
     top: 0;
     left: 0;
     align-items: center;
-    border-bottom: 1px solid #00488b;
+    border-bottom: 1px solid #00376b;
     z-index: 1000;
 }
 

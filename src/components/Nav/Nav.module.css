@@ -5,7 +5,7 @@ ul {
 
 .nav {
     width: 220px;
-    background-color: #3498db;
+    background-color: #0161a1;
     height: 100%; 
     display: flex;
     flex-direction: column;
@@ -17,49 +17,46 @@ ul {
 }
 
 .navBtn button{
-    background-color: #3498db;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: left;
-    font-size: 16px;
-    cursor: pointer;
     width: 100%;
-    border-top: 1px solid #00488b;
-    border-right:1px solid #00488b;
+    border: none;
+    border-top: 1px solid #00376b;
+    border-right: 1px solid #00376b;
+    border-radius: 0px;
 }
 
 .submenu button {
-    background-color: #aaddff;
-    color: #1e5477;
-    border: none;
-    padding: 10px 20px;
-    text-align: left;
-    font-size: 16px;
-    cursor: pointer;
+    background-color: #6ac4ff;
+    color: #0e3550;
     width: 100%;
-    border-top: 1px solid #2980b9;
-    border-right:1px solid #00488b;
+    border-top: 1px solid #00488b;
+    border-right: 1px solid #00488b;
 }
 
 .navBtn button:hover {
-    background-color: #2980b9;
-    border-right: 0px;
+    background-color: #ffffff;
+    color: #003152;
+    border: none;
+    border-right: 1px solid #00376b;
+    border-top: 1px solid #00488b;
 }
 
 .submenu button:hover {
-    background-color: #9bbbd1;
+    border: none;
+    border-top: 1px solid #00488b;
+    border-right: 1px solid #00488b;
+    color: #c5e5fa;
+    background-color: #365c77;
 }
 
 .active button{
-    background-color: #cae5ff;
-    color: #0367C3;
+    background-color: #c1e6ff;
+    color: #0161a1;
     border-right: 0;
 }
 
 .active button:hover{
-    background-color: #cae5ff;
-    color: #0367C3;
+    background-color: #c1e6ff;
+    color: #0161a1;
     border-right: 0;
 }
 
@@ -69,17 +66,14 @@ ul {
 }
 
 .exit button {
-    background-color: #005c99;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    text-align: left;
-    font-size: 16px;
-    cursor: pointer;
+    background-color: #3d88b9;
     width: 100%;
-    border-bottom: 1px solid #2980b9;
+    border-radius: 0px;
+    border: none;
 }
 
 .exit button:hover {
-    background-color: #004472;
+    border: none;
+    background-color: #a9d4f8;
+    color: #1d4d6d;
 }

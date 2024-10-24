@@ -1,18 +1,18 @@
 .button {
-    background-color: #3498db;
+    background-color: #0161a1;
     color: white;
-    border: none;
+    border: 1px solid #0161a1;
     padding: 10px 20px;
     text-align: left;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
-    width: 100%;
-    border: 1px solid #00488b;
-    transition: background-color 0.3s ease, border 0.3s ease;
+    border-radius: 15px;
+    transition: background-color 0.5s ease,  color 0.5s ease, border 0.3s ease;
 }
 
 .button:hover {
-    background-color: #2980b9;
-    border-right: 0px;
+    background-color: #ffffff;
+    color: #003152;
+    border: 1px solid #003152;
 }

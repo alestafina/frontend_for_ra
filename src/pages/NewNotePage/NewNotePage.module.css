@@ -1,0 +1,98 @@
+/* NewNotePage.module.css */
+
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 10px;
+    width: 800px;
+    max-width: 90%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+h2 {
+    color: #00548b;
+    font-size: 22px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.formGroup {
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.formGroup label {
+    font-size: 14px;
+    color: #00548b;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+select {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+input[type="text"]::placeholder {
+    color: #999;
+}
+
+.datePicker {
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    box-sizing: border-box;
+    background-color: #f9f9f9;
+}
+
+.datePicker:focus {
+    outline: none;
+    border-color: #00548b;
+}
+
+.selectField {
+    margin-top: 5px;
+}
+
+.warningMessage {
+    color: red;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.closeButton {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #00548b;
+    transition: color 0.3s;
+}
+
+.closeButton:hover {
+    color: red;
+}

@@ -1,11 +1,12 @@
 import React from "react";
 import classes from "./RejectedPage.module.css";
+import NotesList from "../../components/NotesList/NotesList";
 
 function RejectedPage() {
   return (
     <>
-      <h1>Это страница отклоненных</h1>
-      <div className={classes.info}>сюда мы выведем инфу и графики</div>
+      <h1 className={classes.title}>Отклоненные служебные записки</h1>
+      <div className={classes.info}><NotesList /></div>
     </>
   );
 }

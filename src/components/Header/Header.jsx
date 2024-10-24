@@ -14,7 +14,7 @@ function Header() {
     const getInfo = () => {
       return {
         name: "Имя Фамилия", 
-        position: "Начальник!"
+        position: "Должность"
       };
     };
 

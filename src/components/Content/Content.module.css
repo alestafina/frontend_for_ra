@@ -1,0 +1,46 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal {
+    background-color: #c1e6ff;
+    padding: 20px;
+    width: 1000px;
+    max-width: 95%;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    border: 1px solid #013f68;
+    text-align: center;
+}
+
+.table th {
+    background-color: #0161a1;
+    color: white;
+}
+
+.table td {
+    background-color: #cee8fc;
+    color: #013f68;
+}

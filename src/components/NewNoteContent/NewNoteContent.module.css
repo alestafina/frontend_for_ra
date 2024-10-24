@@ -1,0 +1,46 @@
+.container {
+    padding: 20px;
+  }
+  
+  .title {
+    margin-bottom: 20px;
+    font-size: 24px;
+    text-align: center;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .entry {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .inputField {
+    margin-right: 10px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    flex: 1; /* Увеличивает поле инпута */
+  }
+  
+  .selectField {
+    margin-right: 10px;
+    flex: 1; /* Увеличивает селект */
+  }
+  
+  .delete button{
+    background-color: #ff6767;
+    border: 1px solid #ff6767;
+    margin-left: 10px; /* Отделяем кнопку удаления от остальных полей */
+  }
+  
+  .buttonGroup {
+    display: flex;
+    justify-content: space-between; /* Располагаем кнопки равномерно */
+    margin-top: 20px;
+  }
+  
