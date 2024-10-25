@@ -1,0 +1,36 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal {
+    background: #fff;
+    padding: 20px;
+    border-radius: 15px;
+    width: 20%;
+    text-align: center;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  .yes button {
+    background-color: #19beb1;
+    border: 1px solid #19beb1 ;
+  }
+
+  .no button {
+    background-color: #f57f7f;
+    border: 1px solid #f57f7f;
+  }
