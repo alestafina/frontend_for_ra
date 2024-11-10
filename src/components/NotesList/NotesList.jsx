@@ -1,35 +1,62 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Loader from "../Loader/Loader";
 import arrow from "../../assets/arrow.png";
 import classes from "./NotesList.module.css";
-import Content from "../Content/Content";
-import Button from "../Button/Button";
+import api from "../../api/api";
 
-function NotesList() {
-  // Массив для хранения служебных записок
-  const [notes] = useState([
-    {
-      id: 1,
-      theme: "Тема служебной записки 1",
-      status: "Статус",
-      department: "---",
-      responsible: "Ответственный",
-      creationDate: "12.10.2024",
-      executionDate: "20.10.2024",
-    },
-    {
-      id: 2,
-      theme: "Тема служебной записки 2",
-      status: "Статус",
-      department: "---",
-      responsible: "Ответственный",
-      creationDate: "12.10.2024",
-      executionDate: "20.10.2024",
-    },
-    // больше записок по необходимости
-  ]);
-
-  // Массив для хранения состояния открытия каждой записки
+function NotesList(status) {
+  const [notes, setNotes] = useState([]);
+  const [content, setContent] = useState([]);
   const [openNotes, setOpenNotes] = useState([]);
+  const [loader, setLoader] = useState(false);
+
+  useEffect(() => {
+    const loadData = async () => {
+      const { notes, content } = await getNoteInfo();
+      setNotes(notes);
+      setContent(content);
+    };
+    loadData();
+  }, []);
+
+  const getNoteInfo = async () => {
+    try {
+      setLoader(true);
+      const response = await api.get("/form_memo");
+      const data = response.data;
+
+      const notes = [
+        {
+          id: data.ID_MEMO,
+          theme: data.INFO,
+          status: data.STATUS_TEXT,
+          department: data.CREATOR.DEPARTMENT,
+          info: data.INFO,
+          responsible: `${data.EXECUTOR.NAME} ${data.EXECUTOR.SURNAME}`,
+          creationDate: data.DATE_OF_CREATION,
+          executionDate: data.DATE_OF_APPOINTMENT,
+        },
+      ];
+
+      const content = data.DESCRIPTION.map((descItem, index) => ({
+        position: index + 1,
+        name: descItem.NAME,
+        quantity: descItem.COUNT,
+        unit: descItem.UNIT_TEXT,
+        responsible: `${descItem.EXECUTOR.NAME} ${descItem.EXECUTOR.SURNAME}`,
+        status: descItem.STATUS_TEXT,
+        contract: descItem.CONTRACT,
+        deliveryDate: descItem.DATE_OF_DELIVERY,
+      }));
+
+      return { notes, content };
+    } catch (error) {
+      console.error("Ошибка при получении данных:", error);
+      return { notes: [], content: [] };
+    } finally {
+      setLoader(false);
+    }
+  };
 
   const toggleNote = (id) => {
     setOpenNotes((prevOpenNotes) =>
@@ -39,50 +66,28 @@ function NotesList() {
     );
   };
 
-  const content = [
-    {
-      position: 1,
-      name: "название",
-      quantity: 5,
-      unit: "кг",
-      status: "текст",
-      contract: "-",
-      deliveryDate: "10.10.24",
-    },
-    {
-      position: 2,
-      name: "название",
-      quantity: 5,
-      unit: "шт",
-      status: "текст",
-      contract: "-",
-      deliveryDate: "10.10.24",
-    },
-    // другие строки
-  ];
-
-  const [contentOpen, setContentOpen] = useState(false);
-  const handleOpenContent = () => setContentOpen(true);
-
   return (
     <div className={classes.NotesList}>
+      {loader && <Loader/>}
       {notes.map((note) => {
         const isOpen = openNotes.includes(note.id);
         return (
           <div key={note.id} className={classes.noteItem}>
             <div className={classes.noteHeader}>
-              <span>{note.theme}</span>
-              <span>{note.status}</span>
-              <button
-                className={classes.arrowButton}
-                onClick={() => toggleNote(note.id)}
-              >
-                <img
-                  src={arrow}
-                  className={isOpen ? classes.arrowOpen : classes.arrowClose}
-                  alt={isOpen ? "Arrow Open" : "Arrow Close"}
-                />
-              </button>
+              <span className={classes.theme}>{note.theme}</span>
+              <div className={classes.statusContainer}>
+                <span>{note.status}</span>
+                <button
+                  className={classes.arrowButton}
+                  onClick={() => toggleNote(note.id)}
+                >
+                  <img
+                    src={arrow}
+                    className={isOpen ? classes.arrowOpen : classes.arrowClose}
+                    alt={isOpen ? "Arrow Open" : "Arrow Close"}
+                  />
+                </button>
+              </div>
             </div>
             <div
               className={`${classes.noteDetails} ${
@@ -91,12 +96,44 @@ function NotesList() {
             >
               <p className={classes.data}>Дата создания: {note.creationDate}</p>
               <p className={classes.data}>Отдел/цех: {note.department}</p>
-              <p className={classes.data}>Ответственный: {note.responsible}</p>
-              <p className={classes.data}>Дата исполнения: {note.executionDate}</p>
-              <Button onClick={handleOpenContent} text="Открыть содержание" />
-              {contentOpen && (
-                <Content onClose={() => setContentOpen(false)} content={content} />
-              )}
+              <p className={classes.data}>
+                Дата исполнения: {note.executionDate}
+              </p>
+              <p className={classes.data}>Обоснование: {note.info}</p>
+
+              <div className={classes.modalOverlay}>
+                <div className={classes.modal}>
+                  <p className={classes.data}>Содержание служебной записки:</p>
+                  <table className={classes.table}>
+                    <thead>
+                      <tr>
+                        <th>№ позиции</th>
+                        <th>Наименование</th>
+                        <th>Кол-во</th>
+                        <th>Ед. изм</th>
+                        <th>Ответственный</th>
+                        <th>Статус</th>
+                        <th>Договор</th>
+                        <th>Дата поставки</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {content.map((item, index) => (
+                        <tr key={index}>
+                          <td>{item.position}</td>
+                          <td>{item.name}</td>
+                          <td>{item.quantity}</td>
+                          <td>{item.unit}</td>
+                          <td>{item.responsible}</td>
+                          <td>{item.status}</td>
+                          <td>{item.contract}</td>
+                          <td>{item.deliveryDate}</td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </div>
+              </div>
             </div>
           </div>
         );

@@ -7,10 +7,10 @@ import Button from "../../components/Button/Button";
 import NewNoteContent from "../../components/NewNoteContent/NewNoteContent"; // Импортируем новый компонент
 
 function NewNotePage({ onClose }) {
-  const [departments, setDepartments] = useState([]);
-  const [employees, setEmployees] = useState([]);
-  const [selectedDepartment, setSelectedDepartment] = useState("");
-  const [selectedEmployee, setSelectedEmployee] = useState("");
+  // const [departments, setDepartments] = useState([]);
+  // const [employees, setEmployees] = useState([]);
+  // const [selectedDepartment, setSelectedDepartment] = useState("");
+  // const [selectedEmployee, setSelectedEmployee] = useState("");
   const [noteTheme, setNoteTheme] = useState(""); // Тема
   const [noteDescription, setNoteDescription] = useState(""); // Обоснование
   const [executionDate, setExecutionDate] = useState(null); // Дата исполнения
@@ -18,43 +18,43 @@ function NewNotePage({ onClose }) {
   const [showNoteContent, setShowNoteContent] = useState(false); // Состояние для показа формы содержания
 
   // Пример данных отделов и исполнителей
-  const exampleDepartments = [
-    { id: 1, name: "Отдел разработки" },
-    { id: 2, name: "Отдел маркетинга" },
-    { id: 3, name: "Отдел продаж" },
-  ];
+  // const exampleDepartments = [
+  //   { id: 1, name: "Отдел разработки" },
+  //   { id: 2, name: "Отдел маркетинга" },
+  //   { id: 3, name: "Отдел продаж" },
+  // ];
 
-  const exampleEmployeesByDepartment = {
-    1: [
-      { id: 1, name: "Иван Иванов" },
-      { id: 2, name: "Петр Петров" },
-    ],
-    2: [
-      { id: 3, name: "Мария Смирнова" },
-      { id: 4, name: "Алексей Алексеев" },
-    ],
-    3: [
-      { id: 5, name: "Ольга Сидорова" },
-      { id: 6, name: "Дмитрий Дмитриев" },
-    ],
-  };
+  // const exampleEmployeesByDepartment = {
+  //   1: [
+  //     { id: 1, name: "Иван Иванов" },
+  //     { id: 2, name: "Петр Петров" },
+  //   ],
+  //   2: [
+  //     { id: 3, name: "Мария Смирнова" },
+  //     { id: 4, name: "Алексей Алексеев" },
+  //   ],
+  //   3: [
+  //     { id: 5, name: "Ольга Сидорова" },
+  //     { id: 6, name: "Дмитрий Дмитриев" },
+  //   ],
+  // };
 
   // Имитируем получение данных с сервера при загрузке
-  useEffect(() => {
-    setDepartments(exampleDepartments);
-  }, []);
+  // useEffect(() => {
+  //   setDepartments(exampleDepartments);
+  // }, []);
 
   // Функция для загрузки исполнителей по отделу
-  const fetchEmployees = (departmentId) => {
-    const data = { employees: exampleEmployeesByDepartment[departmentId] };
-    setEmployees(data.employees);
-  };
+  // const fetchEmployees = (departmentId) => {
+  //   const data = { employees: exampleEmployeesByDepartment[departmentId] };
+  //   setEmployees(data.employees);
+  // };
 
   // Обработчик выбора отдела
-  const handleDepartmentChange = (selectedOption) => {
-    setSelectedDepartment(selectedOption);
-    fetchEmployees(selectedOption.value); // Загружаем исполнителей для выбранного отдела
-  };
+  // const handleDepartmentChange = (selectedOption) => {
+  //   setSelectedDepartment(selectedOption);
+  //   fetchEmployees(selectedOption.value); // Загружаем исполнителей для выбранного отдела
+  // };
 
   // Обработчик изменения даты
   const handleDateChange = (date) => {
@@ -65,7 +65,7 @@ function NewNotePage({ onClose }) {
   const handleSubmit = (e) => {
     e.preventDefault(); // Предотвращаем перезагрузку страницы
 
-    if (!noteTheme || !noteDescription || !selectedDepartment || !selectedEmployee || !executionDate) {
+    if (!noteTheme || !noteDescription || /* !selectedDepartment || !selectedEmployee || */ !executionDate) {
       setShowWarning(true);
       return; // Не продолжаем, если поля пустые
     }
@@ -75,8 +75,8 @@ function NewNotePage({ onClose }) {
     const newNoteData = {
       theme: noteTheme,
       description: noteDescription,
-      department: selectedDepartment.value,
-      employee: selectedEmployee.value,
+      // department: selectedDepartment.value,
+      // employee: selectedEmployee.value,
       executionDate: formattedDate,
     };
 
@@ -93,8 +93,8 @@ function NewNotePage({ onClose }) {
   const handleClose = () => {
     setNoteTheme("");
     setNoteDescription("");
-    setSelectedDepartment("");
-    setSelectedEmployee("");
+    // setSelectedDepartment("");
+    // setSelectedEmployee("");
     setExecutionDate(null);
     onClose(); // Вызываем функцию для закрытия модального окна
   };
@@ -129,7 +129,6 @@ function NewNotePage({ onClose }) {
                   value={noteTheme}
                   onChange={(e) => setNoteTheme(e.target.value)}
                   placeholder="Тема служебной записки"
-                  // className={classes.inputField}
                 />
               </div>
               <div className={classes.formGroup}>
@@ -141,7 +140,7 @@ function NewNotePage({ onClose }) {
                   className={classes.inputField}
                 />
               </div>
-              <div className={classes.formGroup}>
+              {/* <div className={classes.formGroup}>
                 <Select
                   value={selectedDepartment}
                   onChange={handleDepartmentChange}
@@ -158,15 +157,15 @@ function NewNotePage({ onClose }) {
                   className={classes.selectField}
                   placeholder="Исполнитель"
                   isDisabled={!selectedDepartment}
-                />
-              </div>
+                /> 
+              </div>*/}
               <div className={classes.formGroup}>
                 <label htmlFor="datePicker" className={classes.dateLabel}>Дата исполнения</label>
                 <DatePicker
                   selected={executionDate}
                   onChange={handleDateChange}
                   dateFormat="dd.MM.yyyy"
-                  className={classes.datePicker} // Используем кастомные стили
+                  className={classes.datePicker} 
                   placeholderText="Выберите дату"
                   minDate={new Date()}
                 />

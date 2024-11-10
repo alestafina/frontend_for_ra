@@ -19,6 +19,17 @@
     border-bottom: 1px solid #004472;
 }
 
+.theme {
+    flex: 1;
+    text-align: left;
+}
+
+.statusContainer {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+}
+
 .arrowButton {
     background: none;
     border: none;
@@ -41,27 +52,52 @@
 .noteDetails {
     background-color: #80c8f8;
     color: #00548b;
-    padding: 15px 20px;  /* Начальные отступы */
+    padding: 15px 20px;
     font-size: 14px;
     max-height: 0;
     overflow: hidden;
-    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out; /* Включаем padding в анимацию */
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out, padding 0.3s ease-in-out;
+    /* Включаем padding в анимацию */
     opacity: 0;
 }
 
 .noteDetails.open {
     max-height: 500px;
     opacity: 1;
-    padding: 15px 20px; /* Отступы при открытии */
+    padding: 15px 20px;
 }
 
 .noteDetails.close {
     max-height: 0;
     opacity: 1;
-    padding: 0 20px; /* Отступы при закрытии (верх и низ убираем) */
+    padding: 0 20px;
 }
 
 
 .data {
     margin-top: 0px;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.table th,
+.table td {
+    padding: 10px;
+    border: 1px solid #013f68;
+    text-align: center;
+}
+
+.table th {
+    background-color: #0161a1;
+    color: white;
+}
+
+.table td {
+    background-color: #cee8fc;
+    color: #013f68;
 }

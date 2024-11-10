@@ -1,42 +1,49 @@
 import React, { useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Button from "../Button/Button";
 import LogoutConfirm from "../LogoutConfirm/LogoutConfirm";
 import classes from "./Nav.module.css";
 
-const Nav = ({ setActivePage, activePage, onLogout }) => {
+const Nav = ({ onLogout }) => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
   const [showSubmenu, setShowSubmenu] = useState(false);
   const [showLogoutModal, setShowLogoutModal] = useState(false);
 
+  // Функция для переключения маршрута
   const handleClick = (page) => {
-    setActivePage(page);
+    navigate(page);
   };
 
   const toggleSubmenu = () => {
     setShowSubmenu((prev) => !prev);
   };
-const handleExitClick = () => {
-    setShowLogoutModal(true); 
+
+  const handleExitClick = () => {
+    setShowLogoutModal(true);
   };
 
   const handleConfirmExit = () => {
-    setShowLogoutModal(false); 
-    onLogout(); 
+    setShowLogoutModal(false);
+    onLogout();
   };
 
   const handleCancelExit = () => {
-    setShowLogoutModal(false); // Закрываем модальное окно без выхода
+    setShowLogoutModal(false);
   };
+
   return (
     <>
       <ul className={classes.nav}>
         <li
           className={
-            activePage === "Главная"
+            location.pathname === "/"
               ? `${classes.navBtn} ${classes.active}`
               : classes.navBtn
           }
         >
-          <Button onClick={() => handleClick("Главная")} text="Главная" />
+          <Button onClick={() => handleClick("/")} text="Главная" />
         </li>
         <li className={classes.navBtn}>
           <Button onClick={toggleSubmenu} text="Служебные записки" />
@@ -44,34 +51,34 @@ const handleExitClick = () => {
             <ul className={classes.submenu}>
               <li
                 className={
-                  activePage === "Реестр"
+                  location.pathname === "/register"
                     ? `${classes.submenuBtn} ${classes.active}`
                     : classes.submenuBtn
                 }
               >
-                <Button onClick={() => handleClick("Реестр")} text="Реестр" />
+                <Button onClick={() => handleClick("/register")} text="Реестр" />
               </li>
               <li
                 className={
-                  activePage === "На согласование"
+                  location.pathname === "/approval"
                     ? `${classes.submenuBtn} ${classes.active}`
                     : classes.submenuBtn
                 }
               >
                 <Button
-                  onClick={() => handleClick("На согласование")}
+                  onClick={() => handleClick("/approval")}
                   text="На согласование"
                 />
               </li>
               <li
                 className={
-                  activePage === "Отклоненные"
+                  location.pathname === "/rejected"
                     ? `${classes.submenuBtn} ${classes.active}`
                     : classes.submenuBtn
                 }
               >
                 <Button
-                  onClick={() => handleClick("Отклоненные")}
+                  onClick={() => handleClick("/rejected")}
                   text="Отклоненные"
                 />
               </li>
@@ -83,10 +90,7 @@ const handleExitClick = () => {
         </li>
       </ul>
       {showLogoutModal && (
-        <LogoutConfirm
-          onConfirm={handleConfirmExit}
-          onCancel={handleCancelExit}
-        />
+        <LogoutConfirm onConfirm={handleConfirmExit} onCancel={handleCancelExit} />
       )}
     </>
   );

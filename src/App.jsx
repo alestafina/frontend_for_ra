@@ -1,43 +1,50 @@
-import React, { useState } from "react";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes, Navigate } from "react-router-dom";
 import Nav from "./components/Nav/Nav";
 import Header from "./components/Header/Header";
 import MainPage from "./pages/MainPage/MainPage";
 import RegisterPage from "./pages/RegisterPage/RegisterPage";
 import ApprovalPage from "./pages/ApprovalPage/ApprovalPage";
 import RejectedPage from "./pages/RejectedPage/RejectedPage";
-import LoginPage from "./pages/LoginPage/LoginPage"; // Импортируем компонент страницы авторизации
+import LoginPage from "./pages/LoginPage/LoginPage";
 import classes from "./App.module.css";
 
 const App = () => {
-  const [activePage, setActivePage] = useState("Авторизация"); // Начальное состояние - страница авторизации
-  const [isAuthenticated, setIsAuthenticated] = useState(false); // Состояние для авторизации
+  const [isAuthenticated, setIsAuthenticated] = React.useState(false);
 
   const handleLoginSuccess = () => {
-    setIsAuthenticated(true); // Пользователь авторизован
-    setActivePage("Главная"); // Перенаправляем на главную страницу
+    setIsAuthenticated(true);
   };
+
   const handleLogout = () => {
-    setIsAuthenticated(false); // Сбрасываем авторизацию
-    setActivePage("login"); // Перенаправляем на страницу авторизации
-    console.clear(); // Очищаем консоль
+    setIsAuthenticated(false);
   };
+
   return (
-    <div className={classes.app}>
-        <>
-        {!isAuthenticated ? (
-          <LoginPage onLoginSuccess={handleLoginSuccess} /> // Отображаем страницу авторизации
-        ) : (
-          <div className={classes.content}>
-          <Header />
-          <Nav setActivePage={setActivePage} activePage={activePage} onLogout={handleLogout} />
-            {activePage === "Главная" && <MainPage />}
-            {activePage === "Реестр" && <RegisterPage />}
-            {activePage === "На согласование" && <ApprovalPage />}
-            {activePage === "Отклоненные" && <RejectedPage />}
-      </div>
-        )}
+    <Router>
+      <div className={classes.app}>
+        {isAuthenticated ? (
+          <>
+            <Header />
+            <Nav onLogout={handleLogout} />
+            <div className={classes.content}>
+              <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                <Route path="/approval" element={<ApprovalPage />} />
+                <Route path="/rejected" element={<RejectedPage />} />
+                <Route path="*" element={<Navigate to="/" replace />} />
+              </Routes>
+            </div>
           </>
-    </div>
+        ) : (
+          <Routes>
+            <Route path="/login" element={<LoginPage onLoginSuccess={handleLoginSuccess} />} />
+            <Route path="*" element={<Navigate to="/login" replace />} />
+          </Routes>
+        )}
+      </div>
+    </Router>
   );
 };
 

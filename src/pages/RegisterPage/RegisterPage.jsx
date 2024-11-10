@@ -5,14 +5,12 @@ import Button from "../../components/Button/Button";
 import NewNotePage from "../NewNotePage/NewNotePage"; 
 
 function RegisterPage() {
-  const [isModalOpen, setIsModalOpen] = useState(false); // состояние для модального окна
+  const [isModalOpen, setIsModalOpen] = useState(false); 
 
-  // Функция для открытия модального окна
   const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
-  // Функция для закрытия модального окна
   const handleCloseModal = () => {
     setIsModalOpen(false);
   };
@@ -31,7 +29,6 @@ function RegisterPage() {
           </div>
         </div>
       )}
-      
       <NotesList />
     </>
   );
